@@ -1,5 +1,6 @@
 package itmo.services;
 
+import itmo.exceptions.BadRequestException;
 import itmo.model.Film;
 import itmo.repositories.FilmRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ public class FilmService {
     }
 
     public Film getFilm(Long id){
-        return filmRepository.findById(id).orElseThrow(() -> new RuntimeException("The film doesn't exist"));
+        return filmRepository.findById(id).orElseThrow(() -> new BadRequestException("The film doesn't exist"));
     }
 
     public List<Film> findByNameContains(String str){
