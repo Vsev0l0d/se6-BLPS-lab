@@ -1,4 +1,4 @@
-package com.itmo.se6blpslab1;
+package itmo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
