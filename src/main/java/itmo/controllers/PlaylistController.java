@@ -20,4 +20,14 @@ public class PlaylistController {
     public List<Playlist> getPlayListsByOwnerId(@PathVariable Long ownerId){
         return playlistService.getPlayListsByOwnerId(ownerId);
     }
+
+    @PutMapping("/playlist/{playlistId}")
+    public void addFilm(@PathVariable Long playlistId, @RequestBody Long filmId){
+        playlistService.addFilm(playlistId, filmId);
+    }
+
+    @DeleteMapping("/playlist/{playlistId}/film/{filmId}")
+    public void deleteFilm(@PathVariable Long playlistId, @PathVariable Long filmId){
+        playlistService.deleteFilm(playlistId, filmId);
+    }
 }

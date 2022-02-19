@@ -3,7 +3,7 @@ package itmo.model;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.Collection;
+import java.util.Set;
 
 @Data
 @Entity
@@ -23,8 +23,5 @@ public class Playlist {
     private Long ownerId;
 
     @ManyToMany
-    @JoinTable(name="film_playlist",
-            joinColumns=@JoinColumn(name="playlistId"),
-            inverseJoinColumns=@JoinColumn(name="filmId"))
-    private Collection<Film> films;
+    private Set<Film> films;
 }

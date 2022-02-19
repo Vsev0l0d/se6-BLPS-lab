@@ -18,7 +18,9 @@ public class FilmService {
     }
 
     public Film getFilm(Long id){
-        return filmRepository.findById(id).orElseThrow(() -> new BadRequestException("The film doesn't exist"));
+        return filmRepository.findById(id).orElseThrow(
+                () -> new BadRequestException("The film doesn't exist")
+        );
     }
 
     public List<Film> findByNameContains(String str){
