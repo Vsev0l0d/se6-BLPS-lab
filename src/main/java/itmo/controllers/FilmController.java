@@ -20,7 +20,7 @@ public class FilmController {
 
     @GetMapping("/film/{id}")
     public Film getFilm(@PathVariable Long id){
-        return filmService.getFilm(id).orElseThrow(() -> new RuntimeException("The film doesn't exist"));
+        return filmService.getFilm(id);
     }
 
     @GetMapping("/film/search/{name}")

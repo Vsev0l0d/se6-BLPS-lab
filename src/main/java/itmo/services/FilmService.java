@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class FilmService {
@@ -17,8 +16,8 @@ public class FilmService {
         this.filmRepository = filmRepository;
     }
 
-    public Optional<Film> getFilm(Long id){
-        return filmRepository.findById(id);
+    public Film getFilm(Long id){
+        return filmRepository.findById(id).orElseThrow(() -> new RuntimeException("The film doesn't exist"));
     }
 
     public List<Film> findByNameContains(String str){
