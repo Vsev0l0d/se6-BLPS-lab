@@ -20,7 +20,7 @@ public class Playlist {
     private String description;
 
     @Column
-    private int ownerId;
+    private Long ownerId;
 
     @ManyToMany
     @JoinTable(name="film_playlist",
