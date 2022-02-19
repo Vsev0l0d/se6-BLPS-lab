@@ -11,7 +11,7 @@ public class Playlist {
     @Id
     @Column
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @Column
     private String name;
