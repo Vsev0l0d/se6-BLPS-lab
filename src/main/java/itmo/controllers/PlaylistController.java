@@ -21,8 +21,8 @@ public class PlaylistController {
         return playlistService.getPlayListsByOwnerId(ownerId);
     }
 
-    @PutMapping("/playlist/{playlistId}")
-    public void addFilm(@PathVariable Long playlistId, @RequestBody Long filmId){
+    @PostMapping("/playlist/{playlistId}/film/{filmId}")
+    public void addFilm(@PathVariable Long playlistId, @PathVariable Long filmId){
         playlistService.addFilm(playlistId, filmId);
     }
 
