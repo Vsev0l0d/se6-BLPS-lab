@@ -6,6 +6,8 @@ import itmo.model.Playlist;
 import itmo.repositories.PlaylistRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -35,6 +37,7 @@ public class PlaylistService {
         }
     }
 
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public void importPlaylist(Long playlistId, Long importedPlaylistId){
         Playlist playlist = getPlaylist(playlistId);
         Playlist importedPlaylist = getPlaylist(importedPlaylistId);
