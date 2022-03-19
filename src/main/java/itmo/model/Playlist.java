@@ -20,6 +20,9 @@ public class Playlist {
     private String description;
 
     @Column
+    private int countTimesImported;
+
+    @Column
     private Long ownerId;
 
     @ManyToMany

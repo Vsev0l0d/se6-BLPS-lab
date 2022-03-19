@@ -35,6 +35,17 @@ public class PlaylistService {
         }
     }
 
+    public void importPlaylist(Long playlistId, Long importedPlaylistId){
+        Playlist playlist = getPlaylist(playlistId);
+        Playlist importedPlaylist = getPlaylist(importedPlaylistId);
+
+        if(playlist.getFilms().addAll(importedPlaylist.getFilms())){
+            playlistRepository.save(playlist);
+            importedPlaylist.setCountTimesImported(importedPlaylist.getCountTimesImported() + 1);
+            playlistRepository.save(importedPlaylist);
+        }
+    }
+
     public void deleteFilm(Long playlistId, Long filmId){
         Playlist playlist = getPlaylist(playlistId);
         Film film = filmService.getFilm(filmId);

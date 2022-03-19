@@ -26,6 +26,11 @@ public class PlaylistController {
         playlistService.addFilm(playlistId, filmId);
     }
 
+    @PostMapping("/playlist/{playlistId}/import/{importedPlaylistId}")
+    public void importPlaylist(@PathVariable Long playlistId, @PathVariable Long importedPlaylistId){
+        playlistService.importPlaylist(playlistId, importedPlaylistId);
+    }
+
     @DeleteMapping("/playlist/{playlistId}/film/{filmId}")
     public void deleteFilm(@PathVariable Long playlistId, @PathVariable Long filmId){
         playlistService.deleteFilm(playlistId, filmId);
