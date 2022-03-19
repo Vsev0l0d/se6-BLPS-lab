@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.itmo</groupId>
-    <artifactId>se6-BLPS-lab1</artifactId>
+    <artifactId>se6-BLPS-lab</artifactId>
     <version>1</version>
-    <name>se6-BLPS-lab1</name>
+    <name>se6-BLPS-lab</name>
     <description>Project for Spring Boot</description>
     <properties>
         <java.version>1.8</java.version>
