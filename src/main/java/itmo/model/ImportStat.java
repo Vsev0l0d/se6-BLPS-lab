@@ -6,19 +6,19 @@ import javax.persistence.*;
 
 @Data
 @Entity
-@Table(name = "accounts")
-public class User {
+@Table
+public class ImportStat {
     @Id
     @Column
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 
     @Column
-    private String username;
-
-    @Column(unique = true)
-    private String mail;
+    private String ownerMail;
 
     @Column
-    private String password;
+    private String playlistName;
+
+    @Column
+    private String importerName;
 }
