@@ -32,4 +32,12 @@ public class UserService implements UserDetailsService {
     public Long getIdByMail(String mail){
         return userRepository.findByMail(mail).getId();
     }
+
+    public String getMailById(Long id){
+        return userRepository.getById(id).getMail();
+    }
+
+    public String getNameById(Long id){
+        return userRepository.getById(id).getUsername();
+    }
 }

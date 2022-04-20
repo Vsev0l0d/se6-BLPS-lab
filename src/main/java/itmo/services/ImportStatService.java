@@ -2,6 +2,7 @@ package itmo.services;
 
 import itmo.model.ImportStat;
 import itmo.repositories.ImportStatRepository;
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,11 @@ public class ImportStatService {
     @Autowired
     public ImportStatService(ImportStatRepository importStatRepository) {
         this.importStatRepository = importStatRepository;
+    }
+
+    @RabbitListener(queues = "queue")
+    public void listen(ImportStat importStat) {
+        importStatRepository.save(importStat);
     }
 
     public String generateEmailText(String ownerMail){
