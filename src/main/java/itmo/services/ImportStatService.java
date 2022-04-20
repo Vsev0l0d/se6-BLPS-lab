@@ -2,6 +2,7 @@ package itmo.services;
 
 import itmo.model.ImportStat;
 import itmo.repositories.ImportStatRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+@Slf4j
 @Service
 public class ImportStatService {
     private final ImportStatRepository importStatRepository;
@@ -33,5 +35,10 @@ public class ImportStatService {
             text.append("\n");
         }
         return text.toString();
+    }
+
+    public void userStats() {
+        log.info("User Statics:");
+        log.info("==============");
     }
 }
