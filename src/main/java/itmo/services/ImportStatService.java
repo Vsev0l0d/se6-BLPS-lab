@@ -5,6 +5,8 @@ import itmo.repositories.ImportStatRepository;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import java.util.Iterator;
@@ -17,10 +19,12 @@ import java.util.stream.Collectors;
 @Service
 public class ImportStatService {
     private final ImportStatRepository importStatRepository;
+    private final JavaMailSender javaMailSender;
 
     @Autowired
-    public ImportStatService(ImportStatRepository importStatRepository) {
+    public ImportStatService(ImportStatRepository importStatRepository, JavaMailSender javaMailSender) {
         this.importStatRepository = importStatRepository;
+        this.javaMailSender = javaMailSender;
     }
 
     @RabbitListener(queues = "queue")
@@ -48,6 +52,11 @@ public class ImportStatService {
         Set<String> mails = importStatRepository.getMails();
         for (String mail : mails) {
             String text = generateEmailText(mail);
+            SimpleMailMessage message = new SimpleMailMessage();
+            message.setTo(mail);
+            message.setSubject("Ваша статистика за неделю");
+            message.setText(text);
+            javaMailSender.send(message);
             log.info("Mail to {} sent: {}", mail, text);
             log.info("==============");
         }
