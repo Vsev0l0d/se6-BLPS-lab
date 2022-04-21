@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -27,14 +28,14 @@ public class ImportStatService {
         importStatRepository.save(importStat);
     }
 
-    public String generateEmailText(String ownerMail){
+    public String generateEmailText(String ownerMail) {
         StringBuilder text = new StringBuilder();
         List<ImportStat> importStats = importStatRepository.findByOwnerMail(ownerMail);
         Map<String, List<ImportStat>> res = importStats.stream().collect(Collectors.groupingBy(ImportStat::getPlaylistName));
-        for(Map.Entry<String, List<ImportStat>> item : res.entrySet()){
+        for (Map.Entry<String, List<ImportStat>> item : res.entrySet()) {
             text.append("Playlist '").append(item.getKey()).append("' has been imported by users:\n\t");
             Iterator<ImportStat> iterator = item.getValue().iterator();
-            while (iterator.hasNext()){
+            while (iterator.hasNext()) {
                 text.append(iterator.next().getImporterName());
                 if (iterator.hasNext()) text.append(", ");
             }
@@ -44,7 +45,11 @@ public class ImportStatService {
     }
 
     public void userStats() {
-        log.info("User Statics:");
-        log.info("==============");
+        Set<String> mails = importStatRepository.getMails();
+        for (String mail : mails) {
+            String text = generateEmailText(mail);
+            log.info("Mail to {} sent: {}", mail, text);
+            log.info("==============");
+        }
     }
 }
