@@ -54,11 +54,10 @@ public class ImportStatService {
             String text = generateEmailText(mail);
             SimpleMailMessage message = new SimpleMailMessage();
             message.setTo(mail);
-            message.setSubject("Ваша статистика за неделю");
+            message.setSubject("Your stats for the week");
             message.setText(text);
             javaMailSender.send(message);
-            log.info("Mail to {} sent: {}", mail, text);
-            log.info("==============");
+            importStatRepository.deleteByOwnerMail(mail);
         }
     }
 }
