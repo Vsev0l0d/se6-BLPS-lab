@@ -3,7 +3,6 @@ package itmo.services;
 import itmo.model.ImportStat;
 import itmo.repositories.ImportStatRepository;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -15,7 +14,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-@Slf4j
 @Service
 public class ImportStatService {
     private final ImportStatRepository importStatRepository;
